@@ -128,4 +128,16 @@ Version      : 1.0
 
     });
 
+    $('body').on('click', '.auth-btn', function(e) {
+        e.preventDefault();
+        var loginUrl = $(this).data('url-login');
+        var logoutUrl = $(this).data('url-logout');
+
+        if ($(this).text().trim().toLowerCase() === 'log in') {
+            window.location.href = loginUrl;
+        } else {
+            window.location.href = logoutUrl;
+        }
+    });
+
 })(jQuery);

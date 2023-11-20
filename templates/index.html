@@ -48,7 +48,7 @@
                     <div class="col-md-3">
                         <!-- START LOGO -->
                         <div class="logo">
-                            <a href="index.html">Turtle</a>
+                            <a href="/">Turtle</a>
                         </div>
                         <!-- END LOGO -->
                     </div>
@@ -73,6 +73,15 @@
                                         <li><a class="smoth-scroll" href="#work">work</a>
                                         </li>
                                         <li><a class="smoth-scroll" href="#comments">comments</a>
+                                        </li>
+                                        <li>
+                                        <button class="auth-btn" data-url-login="{{ url_for('login') }}" data-url-logout="{{ url_for('logout') }}">
+                                            {% if current_user.is_authenticated %}
+                                                Log out
+                                            {% else %}
+                                                Log in
+                                            {% endif %}
+                                        </button>
                                         </li>
                                     </ul>
                                 </div>
@@ -537,17 +546,24 @@
                                             {% else %}
                                                 at an unknown time
                                             {% endif %}
-                                            by admin
+                                            by
+                                            {% if comment.commenter %}
+                                                {{ comment.commenter.username }}
+                                            {% else %}
+                                                anonymous
+                                            {% endif %}
                                         </small>
                                     </div>
                                 </div>
                             {% endfor %}
-                            <div class="row">
-                                <form action="." method="POST">
-                                    <textarea name="content" placeholder="Enter a comment" class="form-control"></textarea>
-                                    <input type="submit" class="btn btn-success" value="Post comment">
-                                </form>
-                            </div>
+                            {% if current_user.is_authenticated %}
+                                <div class="row">
+                                    <form action="." method="POST">
+                                        <textarea name="contents" placeholder="Enter a comment" class="form-control"></textarea>
+                                        <input type="submit" class="btn btn-success" value="Post comment">
+                                    </form>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
