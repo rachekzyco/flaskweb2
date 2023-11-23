@@ -75,13 +75,13 @@
                                         <li><a class="smoth-scroll" href="#comments">comments</a>
                                         </li>
                                         <li>
-                                        <button class="auth-btn" data-url-login="{{ url_for('login') }}" data-url-logout="{{ url_for('logout') }}">
+                                        <a class="auth-btn" data-url-login="{{ url_for('login') }}" data-url-logout="{{ url_for('logout') }}">
                                             {% if current_user.is_authenticated %}
                                                 Log out
                                             {% else %}
                                                 Log in
                                             {% endif %}
-                                        </button>
+                                        </a>
                                         </li>
                                     </ul>
                                 </div>
